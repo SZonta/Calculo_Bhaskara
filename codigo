@@ -1,0 +1,53 @@
+using System.Globalization;
+
+namespace Calculando_Bhaskara
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Solicitando os números para que possa ser possível os cálculos
+            Console.WriteLine("Digite os três números que serão utilizados para os cálculos" +
+                               "\nObs: O primeiro valor deve ser o valor de A, o segundo valor deve ser o valor de B e o terceiro valor deve ser o valor de C\n");
+
+            // Capturando os dados
+            string[] vet = Console.ReadLine().Split(' ');
+            double a = double.Parse(vet[0]);
+            double b = double.Parse(vet[1]);
+            double c = double.Parse(vet[2]);
+
+            // Calculando delta e declarando as variaveis de x' e x''
+            var delta = (Math.Pow(b, 2)) - 4 * a * c;
+            double x1;
+            double x2;
+
+            // Validando se possui números reais
+            if (delta < 0)
+            {
+                Console.WriteLine("\nEssa equação não possui resultados reais");
+            }
+            else if (delta > 0)
+            {
+                x1 = (-b) - Math.Sqrt(delta) / 2 * a;
+                x2 = (-b) + Math.Sqrt(delta) / 2 * a;
+                Console.WriteLine("\nEssa equação possui 2 resultados reais distintos");
+
+                Console.WriteLine($"\nValor de delta: {delta.ToString("F2", CultureInfo.InvariantCulture)}\n" +
+                 $"\nValor de x': {x1.ToString("F2", CultureInfo.InvariantCulture)}" +
+                 $"\nValor de x'': {x2.ToString("F2", CultureInfo.InvariantCulture)}");
+            }
+            else
+            {
+                x1 = (-b) - Math.Sqrt(delta) / 2 * a;
+                x2 = (-b) + Math.Sqrt(delta) / 2 * a;
+                Console.WriteLine("\nEssa equação possui apenas 1 resultado real");
+
+                Console.WriteLine($"\nValor de delta: {delta.ToString("F2", CultureInfo.InvariantCulture)}\n" +
+                 $"\nValor de x': {x1.ToString("F2", CultureInfo.InvariantCulture)}" +
+                 $"\nValor de x'': {x2.ToString("F2", CultureInfo.InvariantCulture)}");
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
